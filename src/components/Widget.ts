@@ -1,23 +1,20 @@
-export interface Widget {
+export class Widget {
     id: string;
     type: string;
-    config: Record<string, any>;
-}
+    data: any;
 
-class BaseWidget implements Widget {
-    id: string;
-    type: string;
-    config: Record<string, any>;
-
-    constructor(id: string, type: string, config: Record<string, any> = {}) {
+    constructor(id: string, type: string, data: any) {
         this.id = id;
         this.type = type;
-        this.config = config;
+        this.data = data;
     }
 
-    render(): string {
-        return `<div>Widget: ${this.type}</div>`;
+    render() {
+        console.log(`Rendering widget - ID: ${this.id}, Type: ${this.type}`);
+    }
+
+    updateData(newData: any) {
+        this.data = newData;
+        console.log('Widget data updated');
     }
 }
-
-export default BaseWidget;

@@ -1,4 +1,12 @@
-import BaseWidget from './components/Widget';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { UserSettings } from './components/UserSettings';
 
-const widget = new BaseWidget('widget1', 'chart', { width: 300, height: 150 });
-console.log(widget.render());
+const App = () => (
+    <div>
+        <h1>Insightful Metrics Dashboard</h1>
+        <UserSettings theme="dark" notificationsEnabled={true} />
+    </div>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,20 +1,16 @@
+import { DataService } from '../services/DataService';
+
 export class Widget {
-    id: string;
-    type: string;
-    data: any;
+    private dataService = new DataService();
 
-    constructor(id: string, type: string, data: any) {
-        this.id = id;
-        this.type = type;
-        this.data = data;
-    }
+    constructor(private id: string, private type: string) {}
 
-    render() {
-        console.log(`Rendering widget - ID: ${this.id}, Type: ${this.type}`);
-    }
-
-    updateData(newData: any) {
-        this.data = newData;
-        console.log('Widget data updated');
+    async loadData() {
+        try {
+            const data = await this.dataService.fetchData(`/api/widgets/${this.id}`);
+            console.log('Data loaded for widget', this.id, data);
+        } catch (error) {
+            console.error('Error loading data for widget', this.id, error);
+        }
     }
 }

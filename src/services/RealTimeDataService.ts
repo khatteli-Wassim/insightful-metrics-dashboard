@@ -1,19 +1,8 @@
-import { Observable, Subject } from 'rxjs';
+import { DataService } from './DataService';
 
-class RealTimeDataService {
-    private dataStream: Subject<any>;
-
-    constructor() {
-        this.dataStream = new Subject();
-    }
-
-    public getDataStream(): Observable<any> {
-        return this.dataStream.asObservable();
-    }
-
-    public pushData(data: any): void {
-        this.dataStream.next(data);
+export class RealTimeDataService implements DataService {
+    public getDataStream(): any[] {
+        // Mock data stream with various edge cases
+        return [1, 2, null, 4, undefined, 6];
     }
 }
-
-export default new RealTimeDataService();

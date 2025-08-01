@@ -1,16 +1,20 @@
-import RealTimeDataService from '../services/RealTimeDataService';
+import { DataService } from '../services/DataService';
 
-class DataStreamWidget {
-    constructor() {
-        this.initializeStream();
+export class DataStreamWidget {
+    private dataService: DataService;
+
+    constructor(dataService: DataService) {
+        this.dataService = dataService;
     }
 
-    private initializeStream(): void {
-        RealTimeDataService.getDataStream().subscribe(data => {
-            console.log('Received new data:', data);
-            // Update widget with real-time data
-        });
+    public renderData(): void {
+        const data = this.dataService.getDataStream();
+        if (data) {
+            // Handle data stream including null or undefined values
+            const filteredData = data.filter(datum => datum !== null && datum !== undefined);
+            console.log('Rendering Data: ', filteredData);
+        } else {
+            console.log('No data available');
+        }
     }
 }
-
-export default DataStreamWidget;

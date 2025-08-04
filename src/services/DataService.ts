@@ -1,25 +1,14 @@
-import { DataPoint, Insight } from '../types/DataTypes';
+import { fetchData } from '../utils/Api';
+import { DataResponse } from '../types/DataTypes';
 
-class DataService {
-    private data: DataPoint[] = [];
-    private insights: Insight[] = [];
-
-    fetchData(): Promise<DataPoint[]> {
-        // Simulation of data fetching
-        return new Promise(resolve => {
-            setTimeout(() => {
-                this.data = [
-                    { timestamp: Date.now(), value: Math.random() * 100 },
-                    { timestamp: Date.now(), value: Math.random() * 100 }
-                ];
-                resolve(this.data);
-            }, 1000);
-        });
-    }
-
-    getInsights(): Insight[] {
-        return this.insights;
+export class DataService {
+    static async getData(): Promise<DataResponse> {
+        try {
+            const response = await fetchData('/api/data');
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
     }
 }
-
-export default DataService;

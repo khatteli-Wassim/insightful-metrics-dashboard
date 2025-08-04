@@ -1,20 +1,24 @@
-import { DataService } from '../services/DataService';
+import { RealTimeDataService } from '../services/RealTimeDataService';
+import { DataPoint } from '../types/DataTypes';
 
 export class DataStreamWidget {
-    private dataService: DataService;
+    private dataService: RealTimeDataService;
+    private dataPoints: DataPoint[];
 
-    constructor(dataService: DataService) {
-        this.dataService = dataService;
+    constructor() {
+        this.dataService = new RealTimeDataService();
+        this.dataPoints = [];
+        this.initialize();
     }
 
-    public renderData(): void {
-        const data = this.dataService.getDataStream();
-        if (data) {
-            // Handle data stream including null or undefined values
-            const filteredData = data.filter(datum => datum !== null && datum !== undefined);
-            console.log('Rendering Data: ', filteredData);
-        } else {
-            console.log('No data available');
-        }
+    private initialize() {
+        this.dataService.startDataStream((newData: DataPoint[]) => {
+            this.updateData(newData);
+        });
+    }
+
+    private updateData(newData: DataPoint[]) {
+        this.dataPoints = [...this.dataPoints, ...newData];
+        console.log("Updated data points:", this.dataPoints);
     }
 }

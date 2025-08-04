@@ -1,24 +1,27 @@
-import { RealTimeDataService } from '../services/RealTimeDataService';
-import { DataPoint } from '../types/DataTypes';
+// Import necessary types
+import React from 'react';
+import { DataType } from '../types/DataTypes';
 
-export class DataStreamWidget {
-    private dataService: RealTimeDataService;
-    private dataPoints: DataPoint[];
-
-    constructor() {
-        this.dataService = new RealTimeDataService();
-        this.dataPoints = [];
-        this.initialize();
-    }
-
-    private initialize() {
-        this.dataService.startDataStream((newData: DataPoint[]) => {
-            this.updateData(newData);
-        });
-    }
-
-    private updateData(newData: DataPoint[]) {
-        this.dataPoints = [...this.dataPoints, ...newData];
-        console.log("Updated data points:", this.dataPoints);
-    }
+interface DataStreamWidgetProps {
+    data: DataType[];
+    title: string;
 }
+
+const DataStreamWidget: React.FC<DataStreamWidgetProps> = ({ data, title }) => {
+    if (!data) {
+        return <div className='error'>Data is currently unavailable</div>;
+    }
+
+    return (
+        <div className='data-stream-widget'>
+            <h2>{title}</h2>
+            <ul>
+                {data.map((item, index) => (
+                    <li key={index}>{item.value}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default DataStreamWidget;

@@ -1,18 +1,8 @@
-// Define types for data handling
-export type DataPoint = {
-    timestamp: number;
-    value: number;
+export type WeatherData = {
+  temperature: number;
+  condition: string;
+  location: string;
 };
 
-export type Insight = {
-    id: string;
-    name: string;
-    description: string;
-    impact: number;
-};
-
-export type Widget = {
-    id: string;
-    type: string;
-    settings: Record<string, any>;
-};
+// Existing exports
+export type { ... } from './ExistingDataTypes';

@@ -1,5 +1,16 @@
 import { Widget } from './Widget';
+import { DataStreamWidget } from './DataStreamWidget';
+import { WeatherDataWidget } from './WeatherDataWidget';
 
-export function createWidget(id: string, type: string, data: any): Widget {
-    return new Widget(id, type, data);
+export class WidgetFactory {
+    static createWidget(type: string): Widget {
+        switch (type) {
+            case 'dataStream':
+                return new DataStreamWidget();
+            case 'weatherData':
+                return new WeatherDataWidget();
+            default:
+                throw new Error(`Unknown widget type: ${type}`);
+        }
+    }
 }

@@ -1,36 +1,40 @@
-# insightful-metrics-dashboard
+# Insightful Metrics Dashboard
 
-## Description
-A dynamic dashboard for visualizing AI-driven business insights, enabling businesses with real-time analytics and decision-making tools powered by AI.
+A dynamic dashboard for visualizing AI-driven business insights.
 
-## Tech Stack
-- TypeScript
-- Node.js
-- Express
-- AI/ML libraries (e.g., TensorFlow.js, ML5.js)
+## Features
+- Real-time data analysis
+- Customizable widgets
+- AI-powered insights
 
-## Setup Instructions
+### How to Run
+
 1. Clone the repository:
-	```
-	git clone https://github.com/yourusername/insightful-metrics-dashboard.git
-	```
-2. Navigate to the project directory:
-	```
-	cd insightful-metrics-dashboard
-	```
-3. Install the dependencies:
-	```
-	npm install
-	```
-4. Compile TypeScript files:
-	```
-	npm run build
-	```
-5. Start the application:
-	```
-	npm start
-	```
+   ```sh
+   git clone https://github.com/yourusername/insightful-metrics-dashboard.git
+   ```
 
-## Environment Variables
-- `API_KEY`: Your API key for accessing AI services
-- `DB_CONNECTION`: Database connection string
+2. Navigate into the project directory:
+   ```sh
+   cd insightful-metrics-dashboard
+   ```
+
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+4. Start the development server:
+   ```sh
+   npm run start
+   ```
+
+5. Open your browser and go to `http://localhost:3000`
+
+### Additional Notes
+- Ensure you have Node.js and npm installed.
+- For production, build with:
+  ```sh
+  npm run build
+  ```
+- Contact support for any issues via the repository's 'Issues' section.
